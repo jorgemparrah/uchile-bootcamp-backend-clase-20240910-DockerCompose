@@ -1,0 +1,28 @@
+services:
+  nestjs-a:
+    image: node:22-alpine3.19
+    user: node
+    working_dir: /home/node/app
+    ports:
+      - 5972:3000
+    volumes:
+      - './proyecto-a:/home/node/app'
+    command: 'yarn start:dev'
+
+  nestjs-b:
+    image: node:22-alpine3.19
+    user: node
+    working_dir: /home/node/app
+    ports:
+      - 15800:3000
+    volumes:
+      - './proyecto-b:/home/node/app'
+    command: 'yarn start:dev'
+
+  nestjs-c:
+    build:
+      context: ./build
+      dockerfile: 'Dockerfile'
+    ports:
+      - 19999:3000
+
